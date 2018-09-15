@@ -1,5 +1,7 @@
 FROM rocker/tidyverse:latest
 
-RUN Rscript -e "devtools::install_github('hadley/devtools')"
-RUN Rscript -e "devtools::install_github('klutometis/roxygen')"
-RUN Rscript -e "install.packages('pkgdown')"
+RUN R -e "source('https://bioconductor.org/biocLite.R')" \
+    && install2.r --error \
+    --deps TRUE \
+    roxygen2 \
+    pkgdown
